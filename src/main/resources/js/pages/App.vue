@@ -28,7 +28,7 @@
                 <v-icon>exit_to_app</v-icon>
             </v-btn>
             <div v-else>
-              <a href="/login"> Вход Google</a>
+              <a href="/login"> вход google</a>
             </div>
 
         </v-toolbar>
