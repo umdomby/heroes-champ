@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("contact")
+@RequestMapping("contact22")
 public class ContactController {
 
     private final ContactRepo contactRepo;

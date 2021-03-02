@@ -1,8 +1,14 @@
 <template>
     <v-app>
         <v-toolbar app>
+          <v-btn flat
+                 v-if="profile"
+                 :disabled="$route.path === '/'"
+                 @click="showMessages">
+            Messages
+          </v-btn>
             <v-btn flat
-                   :disabled="$route.path === '/'"
+                   :disabled="$route.path === '/main'"
                    @click="showMain">
               Main
             </v-btn>
@@ -10,12 +16,6 @@
                  :disabled="$route.path === '/contact'"
                  @click="showContact">
             Contact
-          </v-btn>
-          <v-btn flat
-                 v-if="profile"
-                 :disabled="$route.path === '/message'"
-                 @click="showMessages">
-            Messages
           </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
@@ -52,10 +52,10 @@
                 'addCommentMutation'
             ]),
             showMain() {
-              this.$router.push('/')
+              this.$router.push('/main')
             },
             showMessages() {
-                this.$router.push('/message')
+                this.$router.push('/')
             },
             showContact() {
               this.$router.push('/contact')
@@ -95,7 +95,7 @@
         },
         beforeMount() {
             if (!this.profile) {
-                this.$router.replace('/')
+                this.$router.replace('/main')
             }
         }
     }

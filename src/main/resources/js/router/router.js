@@ -11,13 +11,13 @@ import Contact from '../pages/Contact.vue'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/message', component: MessagesList },
+    { path: '/', component: MessagesList },
     { path: '/auth', component: Auth },
     { path: '/user/:id?', component: Profile },
     { path: '/subscriptions/:id', component: Subscriptions },
     { path: '*', component: MessagesList },
-    { path: '/', component: Main },
-    { path: '/Contact', component: Contact },
+    { path: '/main', component: Main },
+    { path: '/contact', component: Contact },
 ]
 
 export default new VueRouter({
