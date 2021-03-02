@@ -1,13 +1,22 @@
 <template>
     <v-app>
         <v-toolbar app>
-            <v-toolbar-title>Sarafan</v-toolbar-title>
             <v-btn flat
-                   v-if="profile"
                    :disabled="$route.path === '/'"
-                   @click="showMessages">
-                Messages
+                   @click="showMain">
+              Main
             </v-btn>
+          <v-btn flat
+                 :disabled="$route.path === '/contact'"
+                 @click="showContact">
+            Contact
+          </v-btn>
+          <v-btn flat
+                 v-if="profile"
+                 :disabled="$route.path === '/message'"
+                 @click="showMessages">
+            Messages
+          </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
                    v-if="profile"
@@ -18,6 +27,10 @@
             <v-btn v-if="profile" icon href="/logout">
                 <v-icon>exit_to_app</v-icon>
             </v-btn>
+            <div v-else>
+              <a href="/login"> Вход Google</a>
+            </div>
+
         </v-toolbar>
         <v-content>
             <router-view></router-view>
@@ -38,8 +51,14 @@
                 'removeMessageMutation',
                 'addCommentMutation'
             ]),
+            showMain() {
+              this.$router.push('/')
+            },
             showMessages() {
-                this.$router.push('/')
+                this.$router.push('/message')
+            },
+            showContact() {
+              this.$router.push('/contact')
             },
             showProfile() {
                 this.$router.push('/user')
@@ -76,7 +95,7 @@
         },
         beforeMount() {
             if (!this.profile) {
-                this.$router.replace('/auth')
+                this.$router.replace('/')
             }
         }
     }
