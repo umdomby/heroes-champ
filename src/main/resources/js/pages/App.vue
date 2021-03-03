@@ -2,16 +2,16 @@
     <v-app>
         <v-toolbar app>
           <v-btn flat
+                 :disabled="$route.path === '/main'"
+                 @click="showMain">
+            Main
+          </v-btn>
+          <v-btn flat
                  v-if="profile"
                  :disabled="$route.path === '/'"
                  @click="showMessages">
             Messages
           </v-btn>
-            <v-btn flat
-                   :disabled="$route.path === '/main'"
-                   @click="showMain">
-              Main
-            </v-btn>
           <v-btn flat
                  :disabled="$route.path === '/contact'"
                  @click="showContact">
@@ -33,7 +33,7 @@
 
         </v-toolbar>
         <v-content>
-            <router-view></router-view>
+          <router-view></router-view>
         </v-content>
     </v-app>
 </template>
@@ -96,6 +96,9 @@
         beforeMount() {
             if (!this.profile) {
                 this.$router.replace('/main')
+            }
+            else if (this.profile) {
+              this.$router.replace('/main')
             }
         }
     }

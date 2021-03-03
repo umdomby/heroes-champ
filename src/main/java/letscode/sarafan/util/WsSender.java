@@ -14,7 +14,7 @@ import java.util.function.BiConsumer;
 @Component
 public class WsSender {
     private final SimpMessagingTemplate template;
-    private final ObjectMapper mapper;
+    private final ObjectMapper mapper; //serialization deserialization
 
     public WsSender(SimpMessagingTemplate template, ObjectMapper mapper) {
         this.template = template;
