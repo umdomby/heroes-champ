@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.MessagePageDto;
+import letscode.sarafan.repo.ContactRepo;
 import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 public class MainController {
     private final MessageService messageService;
     private final UserDetailsRepo userDetailsRepo;
+    private final ContactRepo contactRepo;
 
     @Value("${spring.profiles.active:prod}")
     private String profile;
@@ -32,9 +34,10 @@ public class MainController {
     private final ObjectWriter profileWriter;
 
     @Autowired
-    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper) {
+    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ContactRepo contactRepo) {
         this.messageService = messageService;
         this.userDetailsRepo = userDetailsRepo;
+        this.contactRepo = contactRepo;
 
         ObjectMapper objectMapper = mapper
                 .setConfig(mapper.getSerializationConfig());
@@ -66,6 +69,7 @@ public class MainController {
             model.addAttribute("messages", messages);
             data.put("currentPage", messagePageDto.getCurrentPage());
             data.put("totalPages", messagePageDto.getTotalPages());
+            data.put("contacts", contactRepo.findAll());
         } else {
             model.addAttribute("messages", "[]");
             model.addAttribute("profile", "null");

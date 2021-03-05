@@ -13,7 +13,7 @@
             Messages
           </v-btn>
           <v-btn flat
-                 :disabled="$route.path === '/contact'"
+                 :disabled="$route.path === '/contact2'"
                  @click="showContact">
             Contact
           </v-btn>
@@ -58,7 +58,7 @@
                 this.$router.push('/')
             },
             showContact() {
-              this.$router.push('/contact')
+              this.$router.push('/contact2')
             },
             showProfile() {
                 this.$router.push('/user')
@@ -98,7 +98,7 @@
                 this.$router.replace('/main')
             }
             else if (this.profile) {
-              this.$router.replace('/main')
+              this.$router.replace('/contact2')
             }
         }
     }
