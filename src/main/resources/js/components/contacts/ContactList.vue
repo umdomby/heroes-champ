@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative; width: 300px;">
+  <div style="position: relative; width: 70%;">
     <contact-form :contacts="contacts" :contactAttr="contact" />
     <contact-row v-for="contact in contacts"
                  :key="contact.id"
