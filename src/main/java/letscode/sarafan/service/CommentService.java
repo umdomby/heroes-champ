@@ -28,7 +28,6 @@ public class CommentService {
         Comment commentFromDb = commentRepo.save(comment);
 
         wsSender.accept(EventType.CREATE, commentFromDb);
-
         return commentFromDb;
     }
 }
