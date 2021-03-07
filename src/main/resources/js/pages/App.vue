@@ -17,6 +17,11 @@
                  @click="showContact">
             Contact
           </v-btn>
+          <v-btn flat
+                 :disabled="$route.path === '/formuser'"
+                 @click="showFormUser">
+            FormUser
+          </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
                    v-if="profile"
@@ -60,6 +65,9 @@
             showContact() {
               this.$router.push('/contact2')
             },
+          showFormUser() {
+            this.$router.push('/formuser')
+          },
             showProfile() {
                 this.$router.push('/user')
             }
@@ -97,9 +105,9 @@
             if (!this.profile) {
                 this.$router.replace('/main')
             }
-            else if (this.profile) {
-              this.$router.replace('/contact2')
-            }
+            // else if (this.profile) {
+            //   this.$router.replace('/contact2')
+            // }
         }
     }
 </script>

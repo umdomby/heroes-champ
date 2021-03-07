@@ -22,11 +22,13 @@
                             >
                                 {{profile.subscribers && profile.subscribers.length}} subscribers
                             </router-link>
+
                             <v-flex
                                 v-else
                             >
                                 {{profile.subscribers && profile.subscribers.length}} subscribers
                             </v-flex>
+                            <v-flex>Login Heroes:</v-flex>
                         </v-layout>
                     </v-flex>
                 </v-layout>
@@ -36,9 +38,20 @@
                 >
                     {{isISubscribed ? 'Unsubscribe' : 'Subscribe'}}
                 </v-btn>
+
+              <form class="card" @submit.prevent="createPerson">
+                <h2>Settings account</h2>
+                <div class="form-control">
+                  <label for="login">Add Login Heroes:</label>
+                  <input type="text" id="login" v-model.trim="login">
+                </div>
+                <button class="btn primary" :disabled="login.length === 0">Add login Heroes</button>
+              </form>
+
             </v-flex>
         </v-layout>
     </v-container>
+
 </template>
 
 <script>
@@ -48,7 +61,8 @@
         name: 'Profile',
         data() {
             return {
-                profile: {}
+                profile: {},
+                login: ''
             }
         },
         computed: {
@@ -80,7 +94,10 @@
                 this.profile = await data.json()
 
                 this.$forceUpdate()
-            }
+            },
+          createPerson(){
+
+          }
         },
         beforeMount() {
             this.updateProfile()
