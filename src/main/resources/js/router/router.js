@@ -6,7 +6,7 @@ import Profile from '../pages/Profile.vue'
 import Subscriptions from '../pages/Subscriptions.vue'
 
 import Main from '../pages/Main.vue'
-import Contact2 from '../pages/Contact2.vue'
+import ContactList from '../pages/ContactList.vue'
 import FormUser from '../pages/FormUser.vue'
 
 Vue.use(VueRouter)
@@ -18,7 +18,7 @@ const routes = [
     { path: '/subscriptions/:id', component: Subscriptions },
     { path: '*', component: MessagesList },
     { path: '/main', component: Main },
-    { path: '/contact2', component: Contact2},
+    { path: '/con', component: ContactList},
     { path: '/formuser', component: FormUser},
 ]
 

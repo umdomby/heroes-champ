@@ -13,7 +13,7 @@
             Messages
           </v-btn>
           <v-btn flat
-                 :disabled="$route.path === '/contact2'"
+                 :disabled="$route.path === '/con'"
                  @click="showContact">
             Contact
           </v-btn>
@@ -51,10 +51,9 @@
         computed: mapState(['profile']),
         methods: {
             ...mapMutations([
-                'addMessageMutation',
-                'updateMessageMutation',
-                'removeMessageMutation',
-                'addCommentMutation'
+                'addMessageMutation', 'updateMessageMutation', 'removeMessageMutation',
+                'addCommentMutation',
+                'addContactMutation', 'updateContactMutation', 'removeContactMutation'
             ]),
             showMain() {
               this.$router.push('/main')
@@ -63,7 +62,7 @@
                 this.$router.push('/')
             },
             showContact() {
-              this.$router.push('/contact2')
+              this.$router.push('/con')
             },
           showFormUser() {
             this.$router.push('/formuser')
@@ -96,7 +95,24 @@
                         default:
                             console.error(`Looks like the event type if unknown "${data.eventType}"`)
                     }
-                } else {
+
+                } else if (data.objectType === 'CONTACT') {
+                  switch (data.eventType) {
+                    case 'CREATE':
+                      this.addContactMutation(data.body)
+                      break
+                    case 'UPDATE':
+                      this.updateContactMutation(data.body)
+                      break
+                    case 'REMOVE':
+                      this.removeContactMutation(data.body)
+                      break
+                    default:
+                      console.error(`Looks like the event type if unknown "${data.eventType}"`)
+                  }
+                }
+
+                else {
                     console.error(`Looks like the object type if unknown "${data.objectType}"`)
                 }
             })

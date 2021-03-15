@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 const contacts = Vue.resource('/contact{/id}')
 
 export default {
@@ -6,3 +7,4 @@ export default {
     update: contact => contacts.update({id: contact.id}, contact),
     remove: id => contacts.remove({id})
 }
+

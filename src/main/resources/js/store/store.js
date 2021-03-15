@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import messagesApi from 'api/messages'
-import commentApi from 'api/comment'
+import messagesApi from '../api/messages'
+import commentApi from '../api/comment'
+import contactsApi from '../api/contacts'
 
 Vue.use(Vuex)
 
@@ -9,10 +10,12 @@ export default new Vuex.Store({
     state: {
         messages,
         profile,
+        contacts: frontendData.contacts,
         ...frontendData
     },
     getters: {
-        sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id))
+        sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id)),
+        sortedContacts: state => (state.contacts || []).sort((a, b) => -(a.id - b.id)),
     },
     mutations: {
         addMessageMutation(state, message) {
@@ -47,7 +50,6 @@ export default new Vuex.Store({
             //if (!message.comments.find(it => it.id === comment.id))
             if (!(message.comments || []).find(it => it.id === comment.id))
             {
-
                 state.messages = [
                     ...state.messages.slice(0, updateIndex),
                     {
@@ -73,6 +75,31 @@ export default new Vuex.Store({
         },
         updateCurrentPageMutation(state, currentPage) {
             state.currentPage = currentPage
+        },
+        addContactMutation(state, contact) {
+            state.contacts = [
+                ...state.contacts,
+                contact
+            ]
+        },
+        updateContactMutation(state, contact) {
+            const updateIndex = state.contacts.findIndex(item => item.id === contact.id)
+
+            state.contacts = [
+                ...state.contacts.slice(0, updateIndex),
+                contact,
+                ...state.contacts.slice(updateIndex + 1)
+            ]
+        },
+        removeContactMutation(state, contact) {
+            const deletionIndex = state.contacts.findIndex(item => item.id === contact.id)
+
+            if (deletionIndex > -1) {
+                state.contacts = [
+                    ...state.contacts.slice(0, deletionIndex),
+                    ...state.contacts.slice(deletionIndex + 1)
+                ]
+            }
         }
     },
     actions: {
@@ -111,6 +138,30 @@ export default new Vuex.Store({
             commit('addMessagePageMutation', data.messages)
             commit('updateTotalPagesMutation', data.totalPages)
             commit('updateCurrentPageMutation', Math.min(data.currentPage, data.totalPages - 1))
-        }
+        },
+
+        async addContactAction({commit, state}, contact) {
+            const result = await contactsApi.add(contact)
+            const data = await result.json()
+            const index = state.contacts.findIndex(item => item.id === data.id)
+
+            if (index > -1) {
+                commit('updateContactMutation', data)
+            } else {
+                commit('addContactMutation', data)
+            }
+        },
+        async updateContactAction({commit}, contact) {
+            const result = await contactsApi.update(contact)
+            const data = await result.json()
+            commit('updateContactMutation', data)
+        },
+        async removeContactAction({commit}, contact) {
+            const result = await contactsApi.remove(contact.id)
+
+            if (result.ok) {
+                commit('removeContactMutation', contact)
+            }
+        },
     }
 })

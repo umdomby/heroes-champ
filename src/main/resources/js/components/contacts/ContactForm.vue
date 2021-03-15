@@ -1,15 +1,21 @@
 <template>
-  <div>
-    <input type="text" placeholder="Write something" v-model="text" />
-    <input type="button" value="Save" @click="save" />
-  </div>
+  <v-layout row>
+    <v-text-field
+        label="New contact"
+        placeholder="Write something"
+        v-model="text"
+    />
+    <v-btn @click="save">
+      Save
+    </v-btn>
+  </v-layout>
 </template>
 
 <script>
-import contactsApi from "api/contacts";
+import { mapActions } from 'vuex'
 
 export default {
-  props: ['contacts', 'contactAttr'],
+  props: ['contactAttr'],
   data() {
     return {
       text: '',
@@ -23,30 +29,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['addContactAction', 'updateContactAction']),
     save() {
       const contact = {
         id: this.id,
-        text: this.text }
+        text: this.text
+      }
 
       if (this.id) {
-        contactsApi.update(contact).then(result =>
-            result.json().then(data => {
-              const index = this.contacts.findIndex(item => item.id === data.id)
-              this.contacts.splice(index, 1, data)
-            })
-        )
+        this.updateContactAction(contact)
       } else {
-        contactsApi.add(contact).then(result =>
-            result.json().then(data => {
-              const index = this.contacts.findIndex(item => item.id === data.id)
-              if(index > -1){
-                this.contacts.splice(index, 1, data)
-              }else{
-                this.contacts.push(data)
-              }
-            })
-        )
+        this.addContactAction(contact)
       }
+
       this.text = ''
       this.id = ''
     }
