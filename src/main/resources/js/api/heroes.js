@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const profile = Vue.resource('/profile{/id}')
+const profile = Vue.resource('/heroes{/id}')
 
 export default {
     get: id => profile.get({id}),

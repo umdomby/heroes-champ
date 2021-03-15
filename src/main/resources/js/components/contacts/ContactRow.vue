@@ -38,16 +38,18 @@
 
     <div>
       <v-container py-0 px-2>
+
+        ({{ contact.author.id}})
+<!--        ({{ profile.id}})-->
         <user-link
             :user="contact.author"
             size="18"
-
         ></user-link>
         <span style="position: absolute; right: 0">
             <input type="button" value="Edit" @click="edit" />
             <input type="button" value="X" @click="del" />
         </span>
-        <i>({{ contact.id }})</i> {{ contact.text }}
+        ({{ contact.id }}) {{ contact.text }}
 
       </v-container>
     </div>
@@ -57,8 +59,14 @@
 <script>
 
 import UserLink from 'components/UserLink.vue'
+// import profileApi from 'js/api/profile'
 
     export default {
+        data() {
+          return {
+             // profile: {},
+          }
+        },
         props: ['contact', 'editContact', 'deleteContact', 'contacts'],
         components: {UserLink},
         methods: {
@@ -67,7 +75,8 @@ import UserLink from 'components/UserLink.vue'
             },
             del() {
                 this.deleteContact(this.contact)
-            }
+            },
+
         }
     }
 </script>

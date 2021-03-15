@@ -29,6 +29,7 @@
                                 {{profile.subscribers && profile.subscribers.length}} subscribers
                             </v-flex>
                             <v-flex>Login Heroes:</v-flex>
+                            <v-flex>{{profile.id}}</v-flex>
                         </v-layout>
                     </v-flex>
                 </v-layout>
