@@ -13,14 +13,14 @@
             Messages
           </v-btn>
           <v-btn flat
-                 :disabled="$route.path === '/con'"
-                 @click="showContact">
-            Contact
+                 :disabled="$route.path === '/ch'"
+                 @click="showChamp">
+            Champ
           </v-btn>
           <v-btn flat
-                 :disabled="$route.path === '/formuser'"
+                 :disabled="$route.path === '/registry'"
                  @click="showFormUser">
-            FormUser
+            Registry
           </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
@@ -53,7 +53,7 @@
             ...mapMutations([
                 'addMessageMutation', 'updateMessageMutation', 'removeMessageMutation',
                 'addCommentMutation',
-                'addContactMutation', 'updateContactMutation', 'removeContactMutation'
+                'addChampMutation', 'updateChampMutation', 'removeChampMutation'
             ]),
             showMain() {
               this.$router.push('/main')
@@ -61,11 +61,11 @@
             showMessages() {
                 this.$router.push('/')
             },
-            showContact() {
-              this.$router.push('/con')
+            showChamp() {
+              this.$router.push('/ch')
             },
           showFormUser() {
-            this.$router.push('/formuser')
+            this.$router.push('/registry')
           },
             showProfile() {
                 this.$router.push('/user')
@@ -96,16 +96,16 @@
                             console.error(`Looks like the event type if unknown "${data.eventType}"`)
                     }
 
-                } else if (data.objectType === 'CONTACT') {
+                } else if (data.objectType === 'CHAMP') {
                   switch (data.eventType) {
                     case 'CREATE':
-                      this.addContactMutation(data.body)
+                      this.addChampMutation(data.body)
                       break
                     case 'UPDATE':
-                      this.updateContactMutation(data.body)
+                      this.updateChampMutation(data.body)
                       break
                     case 'REMOVE':
-                      this.removeContactMutation(data.body)
+                      this.removeChampMutation(data.body)
                       break
                     default:
                       console.error(`Looks like the event type if unknown "${data.eventType}"`)
@@ -122,7 +122,7 @@
                 this.$router.replace('/main')
             }
             // else if (this.profile) {
-            //   this.$router.replace('/contact2')
+            //   this.$router.replace('/champ2')
             // }
         }
     }

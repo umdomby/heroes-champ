@@ -1,7 +1,7 @@
 <template>
   <v-layout row>
     <v-text-field
-        label="New contact"
+        label="New champ"
         placeholder="Write something"
         v-model="text"
     />
@@ -15,7 +15,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  props: ['contactAttr'],
+  props: ['champAttr'],
   data() {
     return {
       text: '',
@@ -23,23 +23,23 @@ export default {
     }
   },
   watch: {
-    contactAttr(newVal, oldVal) {
+    champAttr(newVal, oldVal) {
       this.text = newVal.text
       this.id = newVal.id
     }
   },
   methods: {
-    ...mapActions(['addContactAction', 'updateContactAction']),
+    ...mapActions(['addChampAction', 'updateChampAction']),
     save() {
-      const contact = {
+      const champ = {
         id: this.id,
         text: this.text
       }
 
       if (this.id) {
-        this.updateContactAction(contact)
+        this.updateChampAction(champ)
       } else {
-        this.addContactAction(contact)
+        this.addChampAction(champ)
       }
 
       this.text = ''

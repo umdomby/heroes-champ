@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import messagesApi from '../api/messages'
 import commentApi from '../api/comment'
-import contactsApi from '../api/contacts'
+import champsApi from '../api/champs'
 
 Vue.use(Vuex)
 
@@ -10,12 +10,14 @@ export default new Vuex.Store({
     state: {
         messages,
         profile,
-        contacts: frontendData.contacts,
+        champs: frontendData.champs,
+        users: frontendData.users,
         ...frontendData
     },
     getters: {
         sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id)),
-        sortedContacts: state => (state.contacts || []).sort((a, b) => -(a.id - b.id)),
+        sortedChamps: state => (state.champs || []).sort((a, b) => -(a.id - b.id)),
+        sortedUsers: state => (state.users || []).sort((a, b) => -(a.id - b.id)),
     },
     mutations: {
         addMessageMutation(state, message) {
@@ -76,28 +78,28 @@ export default new Vuex.Store({
         updateCurrentPageMutation(state, currentPage) {
             state.currentPage = currentPage
         },
-        addContactMutation(state, contact) {
-            state.contacts = [
-                ...state.contacts,
-                contact
+        addChampMutation(state, champ) {
+            state.champs = [
+                ...state.champs,
+                champ
             ]
         },
-        updateContactMutation(state, contact) {
-            const updateIndex = state.contacts.findIndex(item => item.id === contact.id)
+        updateChampMutation(state, champ) {
+            const updateIndex = state.champs.findIndex(item => item.id === champ.id)
 
-            state.contacts = [
-                ...state.contacts.slice(0, updateIndex),
-                contact,
-                ...state.contacts.slice(updateIndex + 1)
+            state.champs = [
+                ...state.champs.slice(0, updateIndex),
+                champ,
+                ...state.champs.slice(updateIndex + 1)
             ]
         },
-        removeContactMutation(state, contact) {
-            const deletionIndex = state.contacts.findIndex(item => item.id === contact.id)
+        removeChampMutation(state, champ) {
+            const deletionIndex = state.champs.findIndex(item => item.id === champ.id)
 
             if (deletionIndex > -1) {
-                state.contacts = [
-                    ...state.contacts.slice(0, deletionIndex),
-                    ...state.contacts.slice(deletionIndex + 1)
+                state.champs = [
+                    ...state.champs.slice(0, deletionIndex),
+                    ...state.champs.slice(deletionIndex + 1)
                 ]
             }
         }
@@ -140,27 +142,27 @@ export default new Vuex.Store({
             commit('updateCurrentPageMutation', Math.min(data.currentPage, data.totalPages - 1))
         },
 
-        async addContactAction({commit, state}, contact) {
-            const result = await contactsApi.add(contact)
+        async addChampAction({commit, state}, champ) {
+            const result = await champsApi.add(champ)
             const data = await result.json()
-            const index = state.contacts.findIndex(item => item.id === data.id)
+            const index = state.champs.findIndex(item => item.id === data.id)
 
             if (index > -1) {
-                commit('updateContactMutation', data)
+                commit('updateChampMutation', data)
             } else {
-                commit('addContactMutation', data)
+                commit('addChampMutation', data)
             }
         },
-        async updateContactAction({commit}, contact) {
-            const result = await contactsApi.update(contact)
+        async updateChampAction({commit}, champ) {
+            const result = await champsApi.update(champ)
             const data = await result.json()
-            commit('updateContactMutation', data)
+            commit('updateChampMutation', data)
         },
-        async removeContactAction({commit}, contact) {
-            const result = await contactsApi.remove(contact.id)
+        async removeChampAction({commit}, champ) {
+            const result = await champsApi.remove(champ.id)
 
             if (result.ok) {
-                commit('removeContactMutation', contact)
+                commit('removeChampMutation', champ)
             }
         },
     }

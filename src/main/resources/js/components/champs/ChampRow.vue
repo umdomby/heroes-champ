@@ -1,8 +1,8 @@
 <template>
   <v-card class="my-2">
     <v-card-text primary-title>
-      <i>({{ contact.id }})</i>
-      {{ contact.text }}
+      <i>({{ champ.id }})</i>
+      {{ champ.text }}
     </v-card-text>
     <v-card-actions>
       <v-btn value="Edit" @click="edit" small flat round>Edit</v-btn>
@@ -17,14 +17,14 @@
 import { mapActions } from 'vuex'
 
 export default {
-  props: ['contact', 'editContact'],
+  props: ['champ', 'editChamp'],
   methods: {
-    ...mapActions(['removeContactAction']),
+    ...mapActions(['removeChampAction']),
     edit() {
-      this.editContact(this.contact)
+      this.editChamp(this.champ)
     },
     del() {
-      this.removeContactAction(this.contact)
+      this.removeChampAction(this.champ)
     }
   }
 }

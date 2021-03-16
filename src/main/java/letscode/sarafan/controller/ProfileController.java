@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.UserSubscription;
 import letscode.sarafan.domain.Views;
+import letscode.sarafan.dto.MessagePageDto;
+import letscode.sarafan.dto.UsersDTO;
 import letscode.sarafan.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

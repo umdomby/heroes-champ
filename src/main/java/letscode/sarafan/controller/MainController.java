@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.MessagePageDto;
-import letscode.sarafan.repo.ContactRepo;
+import letscode.sarafan.dto.UsersDTO;
+import letscode.sarafan.repo.ChampRepo;
 import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,19 @@ import java.util.HashMap;
 public class MainController {
     private final MessageService messageService;
     private final UserDetailsRepo userDetailsRepo;
-    private final ContactRepo contactRepo;
+    private final ChampRepo champRepo;
 
     @Value("${spring.profiles.active:prod}")
     private String profile;
     private final ObjectWriter messageWriter;
     private final ObjectWriter profileWriter;
 
+
     @Autowired
-    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ContactRepo contactRepo) {
+    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ChampRepo champRepo) {
         this.messageService = messageService;
         this.userDetailsRepo = userDetailsRepo;
-        this.contactRepo = contactRepo;
+        this.champRepo = champRepo;
 
         ObjectMapper objectMapper = mapper
                 .setConfig(mapper.getSerializationConfig());
@@ -63,20 +65,23 @@ public class MainController {
             Sort sort = Sort.by(Sort.Direction.DESC, "id");
             PageRequest pageRequest = PageRequest.of(0, MessageController.MESSAGES_PER_PAGE, sort);
             MessagePageDto messagePageDto = messageService.findForUser(pageRequest, user);
-
             String messages = messageWriter.writeValueAsString(messagePageDto.getMessages());
-
             model.addAttribute("messages", messages);
+
             data.put("currentPage", messagePageDto.getCurrentPage());
             data.put("totalPages", messagePageDto.getTotalPages());
-            data.put("contacts", contactRepo.findAll());
+            data.put("champs", champRepo.findAll());
+
         } else {
             model.addAttribute("messages", "[]");
             model.addAttribute("profile", "null");
         }
 
+        data.put("users", userDetailsRepo.findAll());
+
         model.addAttribute("frontendData", data);
         model.addAttribute("isDevMode", "dev".equals(profile));
+
 
         return "index";
     }
