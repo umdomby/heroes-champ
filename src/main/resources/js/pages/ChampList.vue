@@ -12,8 +12,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ChampRow from 'components/champs/ChampRow.vue'
-import ChampForm from 'components/champs/ChampForm.vue'
+import ChampRow from '../components/champs/ChampRow.vue'
+import ChampForm from '../components/champs/ChampForm.vue'
 
 export default {
   components: {

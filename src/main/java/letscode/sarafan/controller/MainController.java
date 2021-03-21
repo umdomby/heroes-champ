@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.MessagePageDto;
-import letscode.sarafan.dto.UsersDTO;
 import letscode.sarafan.repo.ChampRepo;
 import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.MessageService;
