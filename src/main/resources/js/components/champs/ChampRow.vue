@@ -1,15 +1,19 @@
 <template>
-  <v-card class="my-2">
-    <v-card-text primary-title>
-      <i>({{ champ.id }})</i>
-      {{ champ.text }}
-    </v-card-text>
-    <v-card-actions>
-      <v-btn value="Edit" @click="edit" small flat round>Edit</v-btn>
+  <v-card class="my-0">
+<!--    <v-card-text>-->
+
       <v-btn icon @click="del" small>
         <v-icon>delete</v-icon>
       </v-btn>
-    </v-card-actions>
+    
+      <v-btn value="Edit" @click="edit" small flat round>Edit</v-btn>
+      <i>({{ champ.id }})</i>
+      {{ champ.text }}
+
+<!--    </v-card-text>-->
+
+<!--    <v-card-actions>-->
+<!--    </v-card-actions>-->
   </v-card>
 </template>
 

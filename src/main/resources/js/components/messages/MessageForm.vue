@@ -14,7 +14,7 @@
 
 <script>
     import { mapActions } from 'vuex'
-    import * as Sentry from '@sentry/browser'
+    // import * as Sentry from '@sentry/browser'
 
     export default {
         props: ['messageAttr'],
