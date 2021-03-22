@@ -73,13 +73,14 @@ public class MainController {
             data.put("currentPage", messagePageDto.getCurrentPage());
             data.put("totalPages", messagePageDto.getTotalPages());
             data.put("champs", champRepo.findAll());
-            data.put("persons", personRepo.findAll());
+
 
         } else {
             model.addAttribute("messages", "[]");
             model.addAttribute("profile", "null");
         }
 
+        data.put("persons", personRepo.findAll());
         data.put("users", userDetailsRepo.findAll());
 
         model.addAttribute("frontendData", data);

@@ -17,12 +17,12 @@ import java.util.function.BiConsumer;
 
 @RestController
 @RequestMapping("champ")
-public class ChampController {
+public class ChampMessageController {
     private final ChampRepo champRepo;
     private final BiConsumer<EventType, Champ> wsSender;
 
     @Autowired
-    public ChampController(ChampRepo champRepo, WsSender wsSender) {
+    public ChampMessageController(ChampRepo champRepo, WsSender wsSender) {
         this.champRepo = champRepo;
         this.wsSender = wsSender.getSender(ObjectType.CHAMP, Views.IdName.class);
     }
