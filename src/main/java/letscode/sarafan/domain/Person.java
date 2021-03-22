@@ -2,11 +2,15 @@ package letscode.sarafan.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
 @Table
 @Data
+@EqualsAndHashCode(of = { "id" })
 public class Person {
 
     //    @GeneratedValue(strategy = GenerationType.AUTO)

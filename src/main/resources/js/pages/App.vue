@@ -22,6 +22,11 @@
                  @click="showFormUser">
             Registry
           </v-btn>
+          <v-btn flat
+                 :disabled="$route.path === '/championships'"
+                 @click="showFormReg">
+            REG
+          </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
                    v-if="profile"
@@ -64,9 +69,12 @@
             showChamp() {
               this.$router.push('/ch')
             },
-          showFormUser() {
-            this.$router.push('/registry')
-          },
+            showFormUser() {
+              this.$router.push('/registry')
+            },
+            showFormReg() {
+              this.$router.push('/championships')
+            },
             showProfile() {
                 this.$router.push('/user')
             }

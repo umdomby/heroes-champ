@@ -16,4 +16,8 @@ public final class Views {
     public interface FullProfile extends IdName {}
 
     public interface FullPerson extends IdName {}
+
+    public interface FullChampionship extends IdName {}
+
+
 }

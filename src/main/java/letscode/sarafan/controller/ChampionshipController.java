@@ -1,11 +1,11 @@
 package letscode.sarafan.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import letscode.sarafan.domain.Person;
+import letscode.sarafan.domain.Championship;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.EventType;
 import letscode.sarafan.dto.ObjectType;
-import letscode.sarafan.repo.PersonRepo;
+import letscode.sarafan.repo.ChampionshipRepo;
 import letscode.sarafan.util.WsSender;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,48 +17,48 @@ import java.util.function.BiConsumer;
 @RestController
 @RequestMapping("championship")
 public class ChampionshipController {
-    private final PersonRepo personRepo;
-    private final BiConsumer<EventType, Person> wsSender;
+    private final ChampionshipRepo championshipRepo;
+    private final BiConsumer<EventType, Championship> wsSender;
 
     @Autowired
-    public ChampionshipController(PersonRepo personRepo, WsSender wsSender) {
-        this.personRepo = personRepo;
-        this.wsSender = wsSender.getSender(ObjectType.PERSON, Views.IdName.class);
+    public ChampionshipController(ChampionshipRepo championshipRepo, WsSender wsSender) {
+        this.championshipRepo = championshipRepo;
+        this.wsSender = wsSender.getSender(ObjectType.CHAMPIONSHIP, Views.IdName.class);
     }
 
     @GetMapping
     @JsonView(Views.IdName.class)
-    public List<Person> list() {
-        return personRepo.findAll();
+    public List<Championship> list() {
+        return championshipRepo.findAll();
     }
 
     @GetMapping("{id}")
-    @JsonView(Views.FullPerson.class)
-    public Person getOne(@PathVariable("id") Person person) {
-        return person;
+    @JsonView(Views.FullChampionship.class)
+    public Championship getOne(@PathVariable("id") Championship championship) {
+        return championship;
     }
 
     @PostMapping
-    public Person create(@RequestBody Person person) {
-        Person updatedPerson = personRepo.save(person);
-        wsSender.accept(EventType.CREATE, updatedPerson);
-        return updatedPerson;
+    public Championship create(@RequestBody Championship championship) {
+        Championship updatedChampionship = championshipRepo.save(championship);
+        wsSender.accept(EventType.CREATE, updatedChampionship);
+        return updatedChampionship;
     }
 
     @PutMapping("{id}")
-    public Person update(
-            @PathVariable("id") Person personFromDb,
-            @RequestBody Person person
+    public Championship update(
+            @PathVariable("id") Championship championshipFromDb,
+            @RequestBody Championship championship
     ) {
-        BeanUtils.copyProperties(person, personFromDb, "id");
-        Person updatedPerson = personRepo.save(personFromDb);
-        wsSender.accept(EventType.UPDATE, updatedPerson);
-        return updatedPerson;
+        BeanUtils.copyProperties(championship, championshipFromDb, "id");
+        Championship updatedChampionship = championshipRepo.save(championshipFromDb);
+        wsSender.accept(EventType.UPDATE, updatedChampionship);
+        return updatedChampionship;
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") Person person) {
-        personRepo.delete(person);
-        wsSender.accept(EventType.REMOVE, person);
+    public void delete(@PathVariable("id") Championship championship) {
+        championshipRepo.delete(championship);
+        wsSender.accept(EventType.REMOVE, championship);
     }
 }

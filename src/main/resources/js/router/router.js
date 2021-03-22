@@ -4,10 +4,10 @@ import MessagesList from '../pages/MessageList.vue'
 import Auth from '../pages/Auth.vue'
 import Profile from '../pages/Profile.vue'
 import Subscriptions from '../pages/Subscriptions.vue'
-
 import Main from '../pages/Main.vue'
 import ChampList from '../pages/ChampList.vue'
 import Registry from '../pages/Registry.vue'
+import ChampionshipList from '../pages/ChampionshipList.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +20,7 @@ const routes = [
     { path: '/main', component: Main },
     { path: '/ch', component: ChampList},
     { path: '/registry', component: Registry},
+    { path: '/championships', component: ChampionshipList},
 ]
 
 export default new VueRouter({
