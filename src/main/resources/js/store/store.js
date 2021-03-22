@@ -11,6 +11,7 @@ export default new Vuex.Store({
         messages,
         profile,
         champs: frontendData.champs,
+        persons: frontendData.persons,
         users: frontendData.users,
         ...frontendData
     },
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id)),
         sortedChamps: state => (state.champs || []).sort((a, b) => -(a.id - b.id)),
         sortedUsers: state => (state.users || []).sort((a, b) => -(a.id - b.id)),
+        sortedPerson: state => (state.persons || []).sort((a, b) => -(a.id - b.id)),
     },
     mutations: {
         addMessageMutation(state, message) {

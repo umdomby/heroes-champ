@@ -2,13 +2,6 @@
 
   <v-container fluid grid-list-xl>
 
-    <v-layout align-space-around justify-start column>
-      <div v-for="user in sortedUsers">
-<!--        {{ user.id }} -->
-        {{ user.name }}
-      </div>
-    </v-layout>
-
     <v-layout>
       <form class="card">
         <h2>Settings account</h2>
@@ -40,6 +33,21 @@
     </v-layout>
 
 
+    <v-layout align-space-around justify-start column>
+      <div v-for="user in sortedUsers">
+        <!--        {{ user.id }} -->
+        {{ user.name }}
+      </div>
+    </v-layout>
+
+    <v-layout align-space-around justify-start column>
+      <div v-for="person in sortedPerson">
+        <!--        {{ user.id }} -->
+        {{ person.nickname }}
+      </div>
+    </v-layout>
+
+
   </v-container>
 
 </template>
@@ -47,6 +55,7 @@
 <script>
 
 import {mapGetters} from 'vuex'
+// import PersonList from "../components/person/PersonList";
 
 
 export default {
@@ -55,11 +64,15 @@ export default {
     return {
       user: null,
       name: '',
+      person: ''
     }
   },
   computed: mapGetters(
-      ['sortedUsers']
+      ['sortedUsers', "sortedPerson"]
   ),
+  // components: {
+  //   PersonList
+  // }
 
 }
 </script>
