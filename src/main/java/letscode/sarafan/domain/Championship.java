@@ -20,31 +20,30 @@ public class Championship {
     @JsonView(Views.IdName.class)
     private Long id;
 
-    @JoinColumn(name = "number_champ")
+
     @JsonView(Views.IdName.class)
     private String number;
 
-    @JoinColumn(name = "type_сhampionship")
     @JsonView(Views.IdName.class)
-    private String nameChampionship;
+    private String name;
 
 //    @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullMessage.class)
-    private LocalDateTime startDate;
+    private LocalDateTime date;
 
-    @JsonView(Views.FullChampionship.class)
-    @OneToMany(
-            mappedBy = "subscriber",
-            orphanRemoval = true
-    )
-    private Set<ChampSubscription> subscriptions = new HashSet<>();
-
-    @JsonView(Views.FullChampionship.class)
-    @OneToMany(
-            mappedBy = "channel",
-            orphanRemoval = true,
-            cascade = CascadeType.ALL
-    )
-    private Set<ChampSubscription> subscribers = new HashSet<>();
+//    @JsonView(Views.FullChampionship.class)
+//    @OneToMany(
+//            mappedBy = "subscriber",
+//            orphanRemoval = true
+//    )
+//    private Set<ChampSubscription> subscriptions = new HashSet<>();
+//
+//    @JsonView(Views.FullChampionship.class)
+//    @OneToMany(
+//            mappedBy = "channel",
+//            orphanRemoval = true,
+//            cascade = CascadeType.ALL
+//    )
+//    private Set<ChampSubscription> subscribers = new HashSet<>();
 }

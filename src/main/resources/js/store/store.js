@@ -13,11 +13,13 @@ export default new Vuex.Store({
         champs: frontendData.champs,
         persons: frontendData.persons,
         users: frontendData.users,
+        championships: frontendData.championships,
         ...frontendData
     },
     getters: {
         sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id)),
         sortedChamps: state => (state.champs || []).sort((a, b) => -(a.id - b.id)),
+        sortedChampionships: state => (state.championships || []).sort((a, b) => -(a.id - b.id)),
         sortedUsers: state => (state.users || []).sort((a, b) => -(a.id - b.id)),
         sortedPerson: state => (state.persons || []).sort((a, b) => -(a.id - b.id)),
     },

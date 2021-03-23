@@ -7,6 +7,7 @@ import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.MessagePageDto;
 import letscode.sarafan.repo.ChampRepo;
+import letscode.sarafan.repo.ChampionshipRepo;
 import letscode.sarafan.repo.PersonRepo;
 import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.MessageService;
@@ -29,6 +30,7 @@ public class MainController {
     private final UserDetailsRepo userDetailsRepo;
     private final ChampRepo champRepo;
     private final PersonRepo personRepo;
+    private final ChampionshipRepo championshipRepo;
 
     @Value("${spring.profiles.active:prod}")
     private String profile;
@@ -37,11 +39,12 @@ public class MainController {
 
 
     @Autowired
-    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ChampRepo champRepo, PersonRepo personRepo) {
+    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ChampRepo champRepo, PersonRepo personRepo, ChampionshipRepo championshipRepo) {
         this.messageService = messageService;
         this.userDetailsRepo = userDetailsRepo;
         this.champRepo = champRepo;
         this.personRepo = personRepo;
+        this.championshipRepo = championshipRepo;
 
         ObjectMapper objectMapper = mapper
                 .setConfig(mapper.getSerializationConfig());
@@ -82,6 +85,7 @@ public class MainController {
 
         data.put("persons", personRepo.findAll());
         data.put("users", userDetailsRepo.findAll());
+        data.put("championships", championshipRepo.findAll());
 
         model.addAttribute("frontendData", data);
         model.addAttribute("isDevMode", "dev".equals(profile));
