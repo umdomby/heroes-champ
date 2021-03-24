@@ -5,9 +5,9 @@ import Auth from '../pages/Auth.vue'
 import Profile from '../pages/Profile.vue'
 import Subscriptions from '../pages/Subscriptions.vue'
 import Main from '../pages/Main.vue'
-import ChampList from '../pages/ChampList.vue'
+import Champ from '../pages/Champ.vue'
 import Registry from '../pages/Registry.vue'
-import ChampionshipList from '../pages/ChampionshipList.vue'
+import Championship from '../pages/Championship.vue'
 
 Vue.use(VueRouter)
 
@@ -18,9 +18,9 @@ const routes = [
     { path: '/subscriptions/:id', component: Subscriptions },
     { path: '*', component: MessagesList },
     { path: '/main', component: Main },
-    { path: '/ch', component: ChampList},
+    { path: '/ch', component: Champ},
     { path: '/registry', component: Registry},
-    { path: '/championships', component: ChampionshipList},
+    { path: '/championships', component: Championship},
 ]
 
 export default new VueRouter({

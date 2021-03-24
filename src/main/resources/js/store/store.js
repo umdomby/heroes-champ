@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import messagesApi from '../api/messages'
 import commentApi from '../api/comment'
 import champsApi from '../api/champs'
+import championshipsApi from '../api/championships'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,15 @@ export default new Vuex.Store({
         sortedPerson: state => (state.persons || []).sort((a, b) => -(a.id - b.id)),
     },
     mutations: {
+        updateChampionshipMutation(state, championship) {
+            const updateIndex = state.championships.findIndex(item => item.id === championship.id)
+
+            state.championships = [
+                ...state.championships.slice(0, updateIndex),
+                championship,
+                ...state.championships.slice(updateIndex + 1)
+            ]
+        },
         addMessageMutation(state, message) {
             state.messages = [
                 ...state.messages,
@@ -162,6 +172,13 @@ export default new Vuex.Store({
             const data = await result.json()
             commit('updateChampMutation', data)
         },
+
+        async updateChampionshipAction({commit}, championship) {
+            const result = await championshipsApi.update(championship)
+            const data = await result.json()
+            commit('updateChampionshipMutation', data)
+        },
+
         async removeChampAction({commit}, champ) {
             const result = await champsApi.remove(champ.id)
 

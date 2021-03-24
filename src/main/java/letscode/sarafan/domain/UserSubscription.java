@@ -43,6 +43,7 @@ public class UserSubscription implements Serializable {
     @JsonView(Views.IdName.class)
     private boolean active;
 
+
     public UserSubscription(User channel, User subscriber) {
         this.channel = channel;
         this.subscriber = subscriber;

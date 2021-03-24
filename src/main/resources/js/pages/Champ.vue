@@ -7,13 +7,14 @@
 <!--      </div>-->
 <!--    </v-layout>-->
 
-    <v-layout row wrap>
-      <v-flex v-for="user in sortedUsers" xs3>
-        <v-card dark color="secondary" >
-          <v-card-text class="px-2">{{ user.name }}</v-card-text>
-        </v-card>
-      </v-flex>
-    </v-layout>
+<!--    <v-layout row wrap>-->
+<!--      <v-flex v-for="user in sortedUsers" xs3>-->
+<!--        <v-card dark color="secondary" >-->
+<!--          <v-card-text class="px-2">{{ user.name }}</v-card-text>-->
+<!--        </v-card>-->
+<!--      </v-flex>-->
+<!--    </v-layout>-->
+
     <br>
     <v-layout align-space-around justify-start column>
       <champ-form :champAttr="champ" />

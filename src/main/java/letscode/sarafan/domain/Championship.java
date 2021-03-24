@@ -21,16 +21,19 @@ public class Championship {
     private Long id;
 
 
-    @JsonView(Views.IdName.class)
-    private String number;
+//    @JsonView(Views.IdName.class)
+//    private String number;
 
     @JsonView(Views.IdName.class)
     private String name;
 
 //    @Column(updatable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonView(Views.FullMessage.class)
-    private LocalDateTime date;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonView(Views.FullMessage.class)
+//    private LocalDateTime date;
+
+    @JsonView(Views.IdName.class)
+    private boolean champoff;
 
 //    @JsonView(Views.FullChampionship.class)
 //    @OneToMany(

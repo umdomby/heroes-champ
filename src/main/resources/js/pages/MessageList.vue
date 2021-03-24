@@ -1,5 +1,9 @@
 <template>
     <v-container>
+
+        <div>{{valueData}}</div>
+        <input type="text" v-on:input="editValueData">
+
         <v-layout align-space-around justify-start column>
             <message-form :messageAttr="message" />
             <message-row v-for="message in sortedMessages"
@@ -17,6 +21,7 @@
     import MessageForm from '../components/messages/MessageForm.vue'
     import LazyLoader from '../components/LazyLoader.vue'
 
+
     export default {
         components: {
             LazyLoader,
@@ -25,13 +30,17 @@
         },
         data() {
             return {
-                message: null
+                message: null,
+                valueData: 'lalala'
             }
         },
         computed: mapGetters(['sortedMessages']),
         methods: {
             editMessage(message) {
                 this.message = message
+            },
+            editValueData(event){
+              this.valueData = event.target.value
             }
         }
     }

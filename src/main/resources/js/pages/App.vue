@@ -25,7 +25,7 @@
           <v-btn flat
                  :disabled="$route.path === '/championships'"
                  @click="showFormReg">
-            REG
+            Championship
           </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
@@ -58,7 +58,8 @@
             ...mapMutations([
                 'addMessageMutation', 'updateMessageMutation', 'removeMessageMutation',
                 'addCommentMutation',
-                'addChampMutation', 'updateChampMutation', 'removeChampMutation'
+                'addChampMutation', 'updateChampMutation', 'removeChampMutation',
+                'updateChampionshipMutation'
             ]),
             showMain() {
               this.$router.push('/main')
@@ -114,6 +115,14 @@
                       break
                     case 'REMOVE':
                       this.removeChampMutation(data.body)
+                      break
+                    default:
+                      console.error(`Looks like the event type if unknown "${data.eventType}"`)
+                  }
+                } else if (data.objectType === 'CHAMPIONSHIP') {
+                  switch (data.eventType) {
+                    case 'UPDATE':
+                      this.updateChampionshipsMutation(data.body)
                       break
                     default:
                       console.error(`Looks like the event type if unknown "${data.eventType}"`)
