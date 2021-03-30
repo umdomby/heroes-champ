@@ -1,13 +1,13 @@
 <template>
   <v-container fluid grid-list-xl>
 
-    <v-layout row>
-      <input type="text" v-on:input="edit">
-      <div>{{data}}</div>
-    </v-layout>
-    <v-btn v-on:click="data++">кнопка</v-btn>
+<!--    <v-layout row>-->
+<!--      <input type="text" v-on:input="edit">-->
+<!--      <div>{{data}}</div>-->
+<!--    </v-layout>-->
+<!--    <v-btn v-on:click="data++">кнопка</v-btn>-->
 
-    <championship-list v-if="profile"></championship-list>
+<!--    <championship-list v-if="profile"></championship-list>-->
 
   </v-container>
 </template>

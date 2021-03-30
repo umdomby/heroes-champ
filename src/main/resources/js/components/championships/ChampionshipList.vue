@@ -40,7 +40,6 @@ export default {
     ...mapActions(['updateChampionshipAction']),
     save() {
       const championship = {
-
         champoff: this.champoff
       }
 

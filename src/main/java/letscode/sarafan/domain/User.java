@@ -29,9 +29,16 @@ public class User {
     private String gender;
     @JsonView(Views.FullProfile.class)
     private String locale;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullProfile.class)
     private LocalDateTime lastVisit;
+
+    @JsonView(Views.FullProfile.class)
+    private String nickname;
+
+    @JsonView(Views.FullProfile.class)
+    private String rate;
 
     @JsonView(Views.FullProfile.class)
     @OneToMany(

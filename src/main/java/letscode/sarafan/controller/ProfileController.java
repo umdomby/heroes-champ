@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.UserSubscription;
 import letscode.sarafan.domain.Views;
+import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.ProfileService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,15 @@ import java.util.List;
 @RequestMapping("profile")
 public class ProfileController {
     private final ProfileService profileService;
+    private final UserDetailsRepo userDetailsRepo;
 
     @Autowired
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, UserDetailsRepo userDetailsRepo) {
         this.profileService = profileService;
+        this.userDetailsRepo = userDetailsRepo;
     }
+
+
 
     @GetMapping("{id}")
     @JsonView(Views.FullProfile.class)
