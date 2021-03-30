@@ -34,6 +34,12 @@ public class User {
     private LocalDateTime lastVisit;
 
     @JsonView(Views.FullProfile.class)
+    private String nickname;
+
+    @JsonView(Views.FullProfile.class)
+    private String rate;
+
+    @JsonView(Views.FullProfile.class)
     @OneToMany(
             mappedBy = "subscriber",
             orphanRemoval = true
