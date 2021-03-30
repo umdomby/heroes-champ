@@ -10,6 +10,8 @@
                   <v-btn icon @click="del" small>
                     <v-icon>delete</v-icon>
                   </v-btn>
+
+            {{message.creationDate}}
 <!--          </v-card-actions>-->
             <div class="pt-3">
                 {{ message.text }}
