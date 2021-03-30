@@ -22,6 +22,15 @@
 <!--    </v-layout>-->
 
 
+        <v-layout row wrap>
+          <v-flex v-for="person in sortedPerson" xs3>
+            <v-card dark color="secondary" >
+              <v-card-text class="px-2">{{ person.nickname }} {{ person.rate }}</v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+
+
 <!--    <v-layout align-space-around justify-start column>-->
 <!--      <div v-for="user in sortedUsers">-->
 <!--        &lt;!&ndash;        {{ user.id }} &ndash;&gt;-->
@@ -29,12 +38,12 @@
 <!--      </div>-->
 <!--    </v-layout>-->
 
-    <v-layout align-space-around justify-start column>
-      <div v-for="person in sortedPerson">
-        <!--        {{ user.id }} -->
-        {{ person.nickname }} rate:{{ person.rate }} info:{{ person.social_network_1 }}
-      </div>
-    </v-layout>
+<!--    <v-layout align-space-around justify-start column>-->
+<!--      <div v-for="person in sortedPerson">-->
+<!--        &lt;!&ndash;        {{ user.id }} &ndash;&gt;-->
+<!--        {{ person.nickname }} rate:{{ person.rate }} info:{{ person.social_network_1 }}-->
+<!--      </div>-->
+<!--    </v-layout>-->
 
   </v-container>
 

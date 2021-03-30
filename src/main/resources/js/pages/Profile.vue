@@ -41,9 +41,9 @@
                 </v-btn>
 
                 <h2>Settings account</h2>
-              <v-flex>Login Heroes: {{profile.nickname}}</v-flex>
 
-              <v-flex>Rate: {{profile.rate}}</v-flex>
+<!--                  <v-flex>Login Heroes: {{profile.nickname}}</v-flex>-->
+<!--                  <v-flex>Rate: {{profile.rate}}</v-flex>-->
 
             </v-flex>
         </v-layout>
