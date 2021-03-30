@@ -6,7 +6,7 @@
         v-model="text"
     />
     <v-btn @click="save">
-      Save
+      ADD
     </v-btn>
   </v-layout>
 </template>
