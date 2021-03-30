@@ -11,7 +11,7 @@ public final class Views {
 
     public interface FullMessage extends IdName {}
 
-    public interface FullHeroes extends IdName {}
+    public interface FullPerson extends IdName {}
 
     public interface FullProfile extends IdName {}
 

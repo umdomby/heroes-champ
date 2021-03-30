@@ -7,7 +7,7 @@ import Subscriptions from '../pages/Subscriptions.vue'
 
 import Main from '../pages/Main.vue'
 import ChampList from '../pages/ChampList.vue'
-import Registry from '../pages/Registry.vue'
+import Person from '../pages/Person.vue'
 
 Vue.use(VueRouter)
 
@@ -19,7 +19,7 @@ const routes = [
     { path: '*', component: MessagesList },
     { path: '/main', component: Main },
     { path: '/ch', component: ChampList},
-    { path: '/registry', component: Registry},
+    { path: '/pr', component: Person},
 ]
 
 export default new VueRouter({

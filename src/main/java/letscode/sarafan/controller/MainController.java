@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.domain.Views;
 import letscode.sarafan.dto.MessagePageDto;
-import letscode.sarafan.dto.UsersDTO;
 import letscode.sarafan.repo.ChampRepo;
+import letscode.sarafan.repo.PersonRepo;
 import letscode.sarafan.repo.UserDetailsRepo;
 import letscode.sarafan.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,7 @@ public class MainController {
     private final MessageService messageService;
     private final UserDetailsRepo userDetailsRepo;
     private final ChampRepo champRepo;
+    private final PersonRepo personRepo;
 
     @Value("${spring.profiles.active:prod}")
     private String profile;
@@ -36,10 +37,11 @@ public class MainController {
 
 
     @Autowired
-    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ChampRepo champRepo) {
+    public MainController(MessageService messageService, UserDetailsRepo userDetailsRepo, ObjectMapper mapper, ChampRepo champRepo, PersonRepo personRepo) {
         this.messageService = messageService;
         this.userDetailsRepo = userDetailsRepo;
         this.champRepo = champRepo;
+        this.personRepo = personRepo;
 
         ObjectMapper objectMapper = mapper
                 .setConfig(mapper.getSerializationConfig());
@@ -78,7 +80,7 @@ public class MainController {
         }
 
         data.put("users", userDetailsRepo.findAll());
-
+        data.put("persons", personRepo.findAll());
         model.addAttribute("frontendData", data);
         model.addAttribute("isDevMode", "dev".equals(profile));
 

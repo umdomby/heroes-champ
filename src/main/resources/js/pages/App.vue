@@ -18,9 +18,9 @@
             Champ
           </v-btn>
           <v-btn flat
-                 :disabled="$route.path === '/registry'"
-                 @click="showFormUser">
-            Registry
+                 :disabled="$route.path === '/pr'"
+                 @click="showPerson">
+            Person
           </v-btn>
             <v-spacer></v-spacer>
             <v-btn flat
@@ -64,9 +64,9 @@
             showChamp() {
               this.$router.push('/ch')
             },
-          showFormUser() {
-            this.$router.push('/registry')
-          },
+            showPerson() {
+              this.$router.push('/pr')
+            },
             showProfile() {
                 this.$router.push('/user')
             }

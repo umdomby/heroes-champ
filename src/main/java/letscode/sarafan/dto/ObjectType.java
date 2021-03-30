@@ -1,5 +1,5 @@
 package letscode.sarafan.dto;
 
 public enum ObjectType {
-    MESSAGE, COMMENT, CHAMP
+    MESSAGE, COMMENT, CHAMP, PERSON
 }
